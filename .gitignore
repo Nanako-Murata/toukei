@@ -1,1 +1,37 @@
-/.metadata/
+# ==== Java / Spring Boot (Eclipse) ====
+backend/target/
+backend/.settings/
+backend/.classpath
+backend/.project
+backend/bin/
+*.class
+*.jar
+!gradle-wrapper.jar
+
+# ==== Eclipse workspace ====
+.metadata/
+
+# ==== Python ====
+stats-service/venv/
+stats-service/__pycache__/
+stats-service/*.pyc
+stats-service/.pytest_cache/
+
+# ==== React / Node ====
+frontend/node_modules/
+frontend/dist/
+frontend/build/
+frontend/.vite/
+
+# ==== IDE commom ====
+.vscode/
+.idea/
+*.iml
+
+# ==== OS ====
+.DS_Store
+Thumbs.db
+
+# ==== environment variables ====
+.env
+.env.local

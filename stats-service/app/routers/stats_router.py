@@ -16,6 +16,7 @@ from app.graph.plot_generator import (
     generate_regression_plot, generate_prediction_plot,
 )
 from app.services.anova import run_anova
+from app.services.chisquare import run_chisquare
 
 router = APIRouter()
 
@@ -121,6 +122,21 @@ def anova_endpoint(request: AnalysisRequest):
                 "boxplot": {"format": "png", "base64": boxplot},
                 "scatter": {"format": "png", "base64": scatter},
             },
+        }
+    except CalculationError as e:
+        return {"status": "error", "errorCode": "CALCULATION_ERROR", "message": str(e)}
+    except Exception as e:
+        return {"status": "error", "errorCode": "CALCULATION_ERROR", "message": str(e)}
+    
+@router.post("/internal/stats/chisquare")
+def chisquare_endpoint(request: AnalysisRequest):
+    try:
+        result = run_chisquare(request.groups)
+        return {
+            "status": "success",
+            "method": "chisquare",
+            "result": result,
+            "graphs": {},
         }
     except CalculationError as e:
         return {"status": "error", "errorCode": "CALCULATION_ERROR", "message": str(e)}

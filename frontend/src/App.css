@@ -213,3 +213,24 @@ select:focus, input:focus {
   border-radius: 8px;
   border: 1px solid var(--border);
 }
+
+.grid-controls {
+  display: flex;
+  gap: 8px;
+  margin-top: 10px;
+}
+
+.grid-controls button {
+  font-size: 13px;
+  padding: 6px 12px;
+  border: 1px solid var(--border);
+  border-radius: 6px;
+  background: var(--surface);
+  color: var(--text);
+  cursor: pointer;
+}
+
+.grid-controls button:hover {
+  background: var(--accent-soft);
+  border-color: var(--accent);
+}

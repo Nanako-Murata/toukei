@@ -1,0 +1,27 @@
+services:
+  frontend:
+    image: toukeinm.azurecr.io/frontend:latest
+    ports:
+      - 80
+    healthcheck:
+      test: ["CMD", "wget", "-q", "-O", "-", "http://localhost/"]
+      interval: 10s
+      timeout: 5s
+      retries: 3
+
+  backend:
+    image: toukeinm.azurecr.io/backend:latest
+    env:
+      - STATS_SERVICE_URL=http://stats-service
+    ports:
+      - 8080
+
+  stats-service:
+    image: toukeinm.azurecr.io/stats-service:latest
+    ports:
+      - 8000
+    healthcheck:
+      test: ["CMD", "wget", "-q", "-O", "-", "http://localhost/"]
+      interval: 10s
+      timeout: 5s
+      retries: 3

@@ -1,4 +1,4 @@
-# ==== ステージ1：ビルド専用の箱(Reactのコードを静的ファイルに変換) ====
+# ==== ステージ1：Reactビルド ====
 FROM node:22-slim AS build
 
 WORKDIR /build
@@ -9,12 +9,12 @@ RUN npm install
 COPY . .
 RUN npm run build
 
-# ==== ステージ2：配信専用の箱(Nginxという軽量Webサーバーで配信) ====
+# ==== ステージ2：Nginxで配信 ====
 FROM nginx:alpine
 
-# ★ Azure のヘルスチェックが wget を使うので必須
 RUN apk add --no-cache wget
 
+# Vite は dist フォルダに出力される
 COPY --from=build /build/dist /usr/share/nginx/html
 
 EXPOSE 80

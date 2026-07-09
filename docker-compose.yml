@@ -1,13 +1,15 @@
 services:
-  frontend:
-    image: toukeinm.azurecr.io/frontend:latest
-    ports:
-      - 80
-    healthcheck:
-      test: ["CMD", "wget", "-q", "-O", "-", "http://localhost/"]
-      interval: 10s
-      timeout: 5s
-      retries: 3
+ frontend:
+  image: toukeinm.azurecr.io/frontend:latest
+  ports:
+    - port: 443
+      targetPort: 80
+  healthcheck:
+    test: ["CMD", "wget", "-q", "-O", "-", "http://localhost/"]
+    interval: 10s
+    timeout: 5s
+    retries: 3
+
 
   backend:
     image: toukeinm.azurecr.io/backend:latest

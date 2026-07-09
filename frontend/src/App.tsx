@@ -118,7 +118,7 @@ function App() {
     });
 
     try {
-      const response = await fetch("https://backend.victorioussmoke-9874bef0.japaneast.azurecontainerapps.io", {
+      const response = await fetch("https://backend.victorioussmoke-9874bef0.japaneast.azurecontainerapps.io/api/analyses", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({
